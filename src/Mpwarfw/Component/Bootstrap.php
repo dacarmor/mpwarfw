@@ -10,14 +10,19 @@ class Bootstrap {
     public function __construct($env, $debug) {
         $this->environment = $env;
         $this->debug = $debug;
-        echo "I'm Bootstrap";
+        echo "I'm Bootstrap<br>";
     }
 
     public function execute() {
         $route = new Routing();
         $controllerData = $route->getRoute();
-        $controller = new $controllerData;
-        $controller->build();
+        if ($controllerData) {
+            $controller = new $controllerData;
+            $controller->build();
+        }
+        else {
+            echo "<h1>Error 404</h1>";
+        }
     }
 
 }
