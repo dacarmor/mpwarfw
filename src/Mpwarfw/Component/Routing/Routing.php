@@ -1,6 +1,6 @@
 <?php
 
-namespace Mpwarfw\Component;
+namespace Mpwarfw\Component\Routing;
 
 class Routing {
     
@@ -28,6 +28,7 @@ class Routing {
         $yaml = new \Symfony\Component\Yaml\Parser();
         $routes = $yaml->parse(file_get_contents('../src/Config/routes.yaml'));
         
+        if ($url == '') return "Controllers\Home\Home";
         foreach ($routes as $key => $route) {
             if ($key == $url) return $route['path'];
         }
