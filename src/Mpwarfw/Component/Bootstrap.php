@@ -2,21 +2,26 @@
 
 namespace Mpwarfw\Component;
 
-use Mpwarfw\Component\Routing;
+use Mpwarfw\Component\Routing\Routing;
+use Mpwarfw\Component\Request\Request;
 
-class Bootstrap {
+class Bootstrap
+{
 
     private $environment;
     private $debug;
 
     public function __construct($env = 'prod', $debug = false) {
+
+        $this->debug       = $debug;
         $this->environment = $env;
-        $this->debug = $debug;
         echo "Bootstrap";
+        
     }
 
-    public function execute() {
-        $route = new Routing();
+    public function execute(Request $request) {
+
+        $route = new Routing($request);
         $controllerData = $route->getRoute();
         if ($controllerData) {
             $controller = new $controllerData;

@@ -2,13 +2,17 @@
 
 namespace Mpwarfw\Component\Routing;
 
-class Routing {
+use Mpwarfw\Component\Request\Request;
+
+class Routing
+{
     
     private $url;
+    private $request;
 
-    public function __construct() {
+    public function __construct(Request $request) {
     
-        $this->url = $_SERVER['REQUEST_URI'];
+        $this->request = $request;
     
     }
     
