@@ -11,19 +11,19 @@ class Bootstrap
     private $environment;
     private $debug;
 
-    public function __construct($env = 'prod', $debug = false) {
+    public function __construct( $env = 'prod', $debug = false ) {
 
         $this->debug       = $debug;
         $this->environment = $env;
         echo "Bootstrap";
-        
+
     }
 
-    public function execute(Request $request) {
+    public function execute( Request $request ) {
 
-        $route = new Routing($request);
+        $route = new Routing( $request );
         $controllerData = $route->getRoute();
-        if ($controllerData) {
+        if ( $controllerData ) {
             $controller = new $controllerData;
             $controller->build();
         }

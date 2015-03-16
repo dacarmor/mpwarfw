@@ -7,10 +7,9 @@ use Mpwarfw\Component\Request\Request;
 class Routing
 {
     
-    private $url;
     private $request;
 
-    public function __construct(Request $request) {
+    public function __construct( Request $request ) {
     
         $this->request = $request;
     
@@ -18,23 +17,24 @@ class Routing
     
     public function getRoute() {
 
-        if (!$this->routeExists($this->url)) {
-            return false;
+        $uri = $this->request->server->getValue( 'REQUEST_URI' );
+        if ( $this->routeExists( $uri ) ) {
+            return $this->routeExists( $uri );
         }
-        return $this->routeExists($this->url);
+        return false;
     
     }
 
-    private function routeExists($url) {
+    private function routeExists( $uri ) {
 
-        $url = explode('/?', $url);
-        $url = trim($url[0], '/');
+        $uri = explode( '/?', $uri );
+        $uri = trim( $uri[0], '/' );
         $yaml = new \Symfony\Component\Yaml\Parser();
-        $routes = $yaml->parse(file_get_contents('../src/Config/routes.yaml'));
+        $routes = $yaml->parse( file_get_contents( '../src/Config/routes.yaml' ) );
         
-        if ($url == '') return "Controllers\Home\Home";
-        foreach ($routes as $key => $route) {
-            if ($key == $url) return $route['path'];
+        if ( $uri == '' ) return "Controllers\Home\Home";
+        foreach ( $routes as $key => $route ) {
+            if ( $key == $uri ) return $route['path'];
         }
         return false;
 
