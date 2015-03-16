@@ -2,6 +2,8 @@
 
 namespace Mpwarfw\Component;
 
+use Mpwarfw\Component\Routing;
+
 class Bootstrap {
 
     private $environment;
@@ -10,7 +12,7 @@ class Bootstrap {
     public function __construct($env = 'prod', $debug = false) {
         $this->environment = $env;
         $this->debug = $debug;
-        echo "I'm Bootstrap<br>";
+        echo "Bootstrap";
     }
 
     public function execute() {
