@@ -4,10 +4,10 @@ namespace Mpwarfw\Component;
 
 class Bootstrap {
 
-    const environment = 'prod';
-    const debug = false;
+    private $environment;
+    private $debug;
 
-    public function __construct($env, $debug) {
+    public function __construct($env = 'prod', $debug = false) {
         $this->environment = $env;
         $this->debug = $debug;
         echo "I'm Bootstrap<br>";
