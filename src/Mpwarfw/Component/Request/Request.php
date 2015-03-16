@@ -3,6 +3,7 @@
 namespace Mpwarfw\Component\Request;
 
 use Mpwarfw\Component\Request\Parameters;
+use Mpwarfw\Component\Session\Session;
 
 class Request
 {
@@ -12,13 +13,13 @@ class Request
     public $cookies;
     public $session;
 
-    public function __construct() {
+    public function __construct($session) {
         $this->get     = new Parameters($_GET);
         $this->post    = new Parameters($_POST);
         $this->server  = new Parameters($_SERVER);
         $this->cookies = new Parameters($_COOKIE);
-        $this->session = new Parameters($_SESSION);
+        $this->session = $session;
 
-        $_GET = $_POST = $_COOKIE = $_SERVER = $_SESSION = array();
+        $_GET = $_POST = $_COOKIE = $_SERVER = array();
     }
 }
