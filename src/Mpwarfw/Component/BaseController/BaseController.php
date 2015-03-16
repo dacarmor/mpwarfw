@@ -1,6 +1,6 @@
 <?php
 
-namespace Mpwarfw\Component;
+namespace Mpwarfw\Component\BaseController;
 
 abstract class BaseController {
     
