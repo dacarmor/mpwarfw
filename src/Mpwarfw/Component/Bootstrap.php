@@ -15,21 +15,25 @@ class Bootstrap
 
         $this->debug       = $debug;
         $this->environment = $env;
-        echo "Bootstrap";
 
     }
 
     public function execute( Request $request ) {
 
-        $route = new Routing( $request );
-        $controllerData = $route->getRoute();
-        if ( $controllerData ) {
-            $controller = new $controllerData;
-            $controller->build();
-        }
-        else {
-            echo "<h1>Error 404</h1>";
-        }
+        $routing = new Routing( $request );
+
+        $controllerPath = $routing->getControllerPath();
+        $controllerName = $controllerPath->getRouteController();
+        $controller = new $controllerName;
+
+        $response = call_user_func_array(
+            array(
+                $controller,
+                $controllerPath->getRouteAction()
+            ),
+            $controllerPath->getRouteParams()
+        );
+        return $response;
     }
 
 }

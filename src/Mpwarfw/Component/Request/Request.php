@@ -14,7 +14,7 @@ class Request
     public $server;
     public $files;
 
-    public function __construct( $session ) {
+    public function __construct( Session $session ) {
 
         $this->session = $session;
         $this->cookies = new Parameters( $_COOKIE );
