@@ -25,8 +25,8 @@ final class Routing
         $uri_params = explode( '/', $uri );
 
         $controller = $uri_params[1];
-        $params     = array_slice($uri_params, 2);
-        $params     = array_filter($params);
+        $params     = array_slice( $uri_params, 2 );
+        $params     = array_filter( $params );
         
         try {
             if ( $controller != null ) {

@@ -24,7 +24,7 @@ class Bootstrap
 
         $controllerPath = $routing->getControllerPath();
         $controllerName = $controllerPath->getRouteController();
-        $controller = new $controllerName;
+        $controller = new $controllerName( $request );
 
         $response = call_user_func_array(
             array(

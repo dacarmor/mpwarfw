@@ -9,9 +9,9 @@ class SmartyTemplate implements Templating
 
     private $smarty;
 
-    public function __construct() {
+    public function __construct( \Smarty $smarty ) {
         
-        $this->smarty = new \Smarty();
+        $this->smarty = $smarty;
         $this->smarty->setCompileDir( '../src/Templates/cache' );
     
     }
