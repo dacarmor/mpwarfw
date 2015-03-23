@@ -22,15 +22,6 @@ class Database extends \PDO
 
     }
 
-    public function selectAll( $table ) {
-
-        $query = "SELECT * FROM $table;";
-        $statement = $this->prepare( $query);
-        $statement->execute();
-        return $statement->fetchAll( \PDO::FETCH_ASSOC );
-
-    }
-
     public function select( $query, $array = array() ) {
 
         $statement = $this->prepare( $query );
